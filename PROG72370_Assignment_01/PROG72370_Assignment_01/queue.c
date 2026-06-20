@@ -35,3 +35,21 @@ int enqueue(Queue* q, User user) // Function to add a user to the back of the qu
 
     return 0;
 }
+
+int dequeue(Queue* q, User* user) // Function to remove a user from the front of the queue
+{
+	if (q->head == NULL) // Check if the queue is empty by checking if the head pointer is NULL
+        return 1;
+
+	QueueNode* temp = q->head; //	Store the current head node in a temporary variable to free its memory later
+	*user = temp->data; // Copy the user information from the head node to the user pointer passed as an argument
+
+	q->head = q->head->next; // Update the head pointer to point to the next node in the queue, effectively removing the current head node from the queue
+
+	if (q->head == NULL) // Check if the queue is now empty after removing the head node
+		q->tail = NULL; // If the queue is empty, set the tail pointer to NULL as well, indicating that the queue is now empty
+
+	free(temp); // Free the memory allocated for the removed head node to prevent memory leaks
+
+    return 0;
+}
