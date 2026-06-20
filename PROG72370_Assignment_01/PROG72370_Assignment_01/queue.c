@@ -1,5 +1,7 @@
 #include "queue.h" // Include the header file for the Queue structure and function prototypes
 #include <stdlib.h> // Include standard library for memory allocation
+#include <string.h>
+#include <time.h>
 
 void initializeQueue(Queue* q) // Function to initialize the queue
 {
@@ -50,6 +52,34 @@ int dequeue(Queue* q, User* user) // Function to remove a user from the front of
 		q->tail = NULL; // If the queue is empty, set the tail pointer to NULL as well, indicating that the queue is now empty
 
 	free(temp); // Free the memory allocated for the removed head node to prevent memory leaks
+
+    return 0;
+}
+
+static void generateUsername(char name[])
+{
+    const char chars[] = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (int i = 0; i < 10; i++)
+        name[i] = chars[rand() % 36];
+
+    name[10] = '\0';
+}
+
+int enqueueRandomUsers(Queue* q, int numUsers) // Function to add a specified number of random users to the back of the queue
+{
+	const char* factions[] = { "Red", "Blue", "Green" }; // Array of faction names to randomly assign to users
+
+	for (int i = 0; i < numUsers; i++) // Loop to generate and enqueue the specified number of random users
+    {
+		User u; // Declare a User structure variable to hold the information of the user being generated
+
+		generateUsername(u.username); // Generate a random username for the user and store it in the username field of the User structure
+		u.level = (rand() % 60) + 1; // Generate a random level for the user between 1 and 60 (inclusive) and store it in the level field of the User structure
+		strcpy_s(u.faction, sizeof(u.faction), factions[rand() % 3]); // Randomly select a faction from the factions array and copy it to the faction field of the User structure using a safe string copy function
+
+		enqueue(q, u); // Enqueue the generated user into the queue by calling the enqueue function with the queue pointer and the User structure as arguments
+    }
 
     return 0;
 }

@@ -22,7 +22,8 @@ typedef struct Queue // Structure to represent the queue itself
 
 void initializeQueue(Queue* q); // Function prototype for initializing the queue, which sets the head and tail pointers to NULL, indicating an empty queue
 int isEmpty(Queue* q); // Function prototype for checking if the queue is empty, which returns 1 (true) if the head pointer is NULL, indicating the queue is empty; otherwise, it returns 0 (false)
-int enqueue(Queue* q, User user);// Function prototype for adding a user to the back of the queue, which takes a pointer to the queue and a User structure as arguments, and returns 0 on success or 1 on failure (e.g., if memory allocation fails)
+int enqueue(Queue* q, User user); // Function prototype for adding a user to the back of the queue, which takes a pointer to the queue and a User structure as arguments, and returns 0 on success or 1 on failure (e.g., if memory allocation fails)
 int dequeue(Queue* q, User* user); // Function prototype for removing a user from the front of the queue, which takes a pointer to the queue and a pointer to a User structure as arguments, and returns 0 on success or 1 if the queue is empty (i.e., if there are no users to dequeue)
+int enqueueRandomUsers(Queue* q, int numUsers); // Function prototype for adding a specified number of random users to the back of the queue, which takes a pointer to the queue and an integer representing the number of users to add as arguments, and returns 0 on success
 
 #endif
