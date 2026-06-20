@@ -3,13 +3,11 @@
 
 int main()
 {
-	Queue q; // Declare a variable of type Queue to represent the queue
-	initializeQueue(&q); // Initialize the queue by calling the initializeQueue function, passing the address of the queue variable
+	Queue q; // Declare a variable of type Queue to represent the queue data structure
+	initializeQueue(&q); // Call the function to initialize the queue, passing a pointer to the queue variable, which sets the head and tail pointers to NULL, indicating an empty queue
 
-	if (isEmpty(&q)) // Check if the queue is empty by calling the isEmpty function, passing the address of the queue variable
-    {
-		printf("Queue is empty\n"); // If the queue is empty, print a message indicating that the queue is empty
-    }
+	User u = { "testUser", 10, "Red" }; // Create a User structure variable named u and initialize it with the username "testUser", level 10, and faction "Red"
+	enqueue(&q, u); // Call the function to add the user u to the back of the queue, passing a pointer to the queue variable and the user variable as arguments; this will create a new node in the queue with the user information and link it to the end of the queue
 
     return 0;
 }
